@@ -23,5 +23,16 @@ def add_item():
     items.append({"id":id,"brands":new_item["brands"],"product_name":new_item["product_name"],"code":new_item["code"]})
     return jsonify({"message":f"{new_item["product_name"]} has been succesfully added to the inventory list"}),201
 
+@app.route('/inventory/<int:id>',methods = ['PUT','PATCH'])
+def update_item(id):
+    data = request.get_json()
+    item_to_update = next((i for i in items if i["id"] == id),None)
+    if item_to_update:
+        item_to_update["product_name"] = data["product_name"]
+        item_to_update["brands"] = data["brands"]
+        return jsonify({"message":f"{data["product_name"]}has been updated successfully"}),200
+    else:
+        return jsonify({"error":f"No item with id:{id}"}),404
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
