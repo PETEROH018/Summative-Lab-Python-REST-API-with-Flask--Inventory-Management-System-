@@ -6,7 +6,7 @@ items = get_items()
 
 @app.route('/inventory',methods = ["GET"])
 def show_items():
-    return make_response(items),200
+    return make_response(items),200 
 
 @app.route('/inventory/<int:id>',methods = ["GET"])
 def show_item(id):
