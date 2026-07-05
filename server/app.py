@@ -28,9 +28,14 @@ def update_item(id):
     data = request.get_json()
     item_to_update = next((i for i in items if i["id"] == id),None)
     if item_to_update:
-        item_to_update["product_name"] = data["product_name"]
-        item_to_update["brands"] = data["brands"]
-        return jsonify({"message":f"{data["product_name"]} has been updated successfully"}),200
+        if "product_name" in data and "brands" in data:
+            item_to_update["product_name"] = data["product_name"]
+            item_to_update["brands"] = data["brands"]
+        elif "product_name" in data and "brands" not in data:
+            item_to_update["product_name"] = data["product_name"]
+        else:
+            item_to_update["brands"] = data["brands"]
+        return jsonify({"message":f"{item_to_update["product_name"]} has been updated successfully"}),200
     else:
         return jsonify({"error":f"No item with id:{id}"}),404
 
@@ -46,4 +51,4 @@ def delete_item(id):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
