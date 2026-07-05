@@ -1,17 +1,18 @@
 import requests
+import re
 from colorama import Fore,Style,init
 init(autoreset=True)
 
 def view_item(args):
-    try:
-        id = int(input("Enter the id of the item you want to view: "))
-        response = requests.get(f'http://127.0.0.1:5000/inventory/{id}')
-        item = response.json()
-        if "error" in item:
-            print(f"{Fore.RED}{item.get("error")}")
+    if args.id != None:
+        if re.match(r"^[0-9]+$",args.id):
+            response = requests.get(f'http://127.0.0.1:5000/inventory/{args.id}')
+            item = response.json()
+            if "error" in item:
+                print(f"{Fore.RED}{item.get("error")}")
+            else:
+                print(f"{Fore.GREEN}id{Style.RESET_ALL}: {item.get("id")},{Fore.GREEN}name{Style.RESET_ALL}: {item.get("product_name")},{Fore.GREEN}brands{Style.RESET_ALL}: {item.get("brands")}")
         else:
-            print(f"{Fore.GREEN}id{Style.RESET_ALL}: {item.get("id")},{Fore.GREEN}name{Style.RESET_ALL}: {item.get("product_name")},{Fore.GREEN}brands{Style.RESET_ALL}: {item.get("brands")}")
-    except ValueError as e:
-        print(f"{Fore.RED}Please enter an integer id!")
-        view_item(args)
-    
+            print(f"{Fore.RED}Please enter an integer id!")
+    else:
+        print(f"{Fore.RED}Please include an item id in the argument!")    

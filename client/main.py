@@ -9,6 +9,7 @@ def main():
     view_items_subparser.set_defaults(func=view_items)
 
     view_item_subparser = subparsers.add_parser("view-item",help="view an item's details by specifying its id")
+    view_item_subparser.add_argument('--id',help="Provide the id of the item you want to view which should be an integer")
     view_item_subparser.set_defaults(func=view_item)
 
     args = parser.parse_args()
