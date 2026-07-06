@@ -9,14 +9,8 @@ def get_items():
             items = [{**item,"id":index+1} for index,item in enumerate(response.json()["products"])]
             return items
         else:
-            return None
+            get_items()
 
-while get_items() == None:
-     print(get_items())
-     get_items()
-     if get_items()!= None:
-          print(get_items())
-          break
 
 
 
