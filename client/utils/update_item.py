@@ -2,21 +2,42 @@ from colorama import Fore,init,Style
 import re
 import requests
 import sys
-
 init(autoreset=True)
+
+def validate_name(name):
+    if re.match(r"^[a-zA-Z0-9 ]+$",name):
+            return {"product_name":name}
+    else: 
+            return (f"{Fore.RED}The item name should only contain numbers,letters,commas and spaces!")
 def update_item(args):
     if args.brands == None and args.name == None:
         print(f"{Fore.RED} Provide at least one value to update!{Style.RESET_ALL}{Fore.GREEN} Either the name or brands")
         sys.exit(1)
     elif args.brands == None:
-        item_update = {"product_name":args.name}
+        if re.match(r"^[a-zA-Z0-9 ]+$",args.name):
+            item_update = {"product_name":args.name}
+        else: 
+            print (f"{Fore.RED}The item name should only contain numbers,letters,commas and spaces!")
+            sys.exit(1)
     elif args.name == None:
-        item_update = {"brands":args.brands}
+        if re.match(r"^[a-zA-Z0-9, ]+$",args.brands):
+            item_update = {"brands":args.brands}
+        else:
+            print (f"{Fore.RED}The item brands should only contain numbers,letters,commas and spaces!")
+            sys.exit(1)
     else:
-        item_update = {
-        "product_name":args.name,
-        "brands":args.brands
-        }
+        if not re.match(r"^[a-zA-Z0-9 ]+$",args.name):
+            print (f"{Fore.RED}The item name should only contain numbers,letters,commas and spaces!")
+            sys.exit(1)
+        if not re.match(r"^[a-zA-Z0-9, ]+$",args.brands):
+            print (f"{Fore.RED}The item brands should only contain numbers,letters,commas and spaces!")
+            sys.exit(1)
+        else:
+            item_update = {
+            "product_name":args.name,
+            "brands":args.brands
+            }
+            
     if args.id != None:
         if re.match(r"^[0-9]+$",args.id):
             response = requests.patch(f"http://127.0.0.1:5000/inventory/{args.id}",json=item_update)
