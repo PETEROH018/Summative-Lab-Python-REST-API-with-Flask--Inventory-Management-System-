@@ -1,5 +1,5 @@
 import argparse
-from utils import view_items,view_item,add_item,update_item
+from utils import view_items,view_item,add_item,update_item,remove_item
 
 def main():
     parser = argparse.ArgumentParser(description="Python-REST-API-with-Flask--Inventory-Management-System-")
@@ -24,6 +24,10 @@ def main():
     update_item_subparser.add_argument('--brands',help='Provide the new brand(s) name(s) for the item')
     update_item_subparser.set_defaults(func=update_item)
 
+    remove_item_subparser = subparsers.add_parser("remove-item",help="Remove an item by specifying the integer id")
+    remove_item_subparser.add_argument('--id',help="Provide the id of the item you want to remove which should be an integer")
+    remove_item_subparser.set_defaults(func=remove_item)
+    
     args = parser.parse_args()
     if hasattr(args,"func"):
         args.func(args)

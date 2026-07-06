@@ -49,6 +49,5 @@ def delete_item(id):
     else:
         return jsonify({"error":f"No item with id:{id}"}),404
 
-
 if __name__ == '__main__':
     app.run(debug=True)
