@@ -1,16 +1,16 @@
-## Operation
+# Operation
 - This application has two parts, the client and the server
-# Server
+## Server
 - To start the server, navigate to the server directory and run "python3 app.py" on the terminal
 - This will run a Flask app an provide the server URL which is used by the client to make requests and obtain responses
-# Client
+## Client
 - The client is a CLI tool which makes request to the server you started earlier by executing the commands listed below
 - For the application to work, the server must be started first before any requests are made by the client
 - To make a request on the client, navigate to the client directory and execute a command by running "python3 main.py view-item --id 1" on the terminal
 - To view all commands and what each does, run "python3 main.py --help" on the terminal
 - To view the arguments of each command, run "python3 main.py add-item --help" on the terminal
 
-## Commands
+# Commands
 1. view-items
     - This command is used to view all items in the inventory
     - It does not take any argumemts
