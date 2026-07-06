@@ -2,6 +2,7 @@ import requests
 from colorama import Fore,init,Style
 init(autoreset=True)
 
+# This function handles displaying all the items in the inventory by making a GET request to the server
 def view_items(args):
     response = requests.get('http://127.0.0.1:5000/inventory')
     items = response.json()

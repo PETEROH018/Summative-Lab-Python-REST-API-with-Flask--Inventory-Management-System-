@@ -3,6 +3,7 @@ import sys
 from colorama import Fore,Style,init
 init(autoreset=True)
 
+# This class handles input validation for the add-item CLI command ensuring that the name, brands and barcode meet the right input specifications
 class Item:
     def __init__(self,name,brands,code):
         self.name = name
@@ -12,7 +13,7 @@ class Item:
     @property
     def name(self):
         return self._name
-    @name.setter
+    @name.setter # The name setter enforces input validation for the item name
     def name(self,value):
         if re.match(r"^[a-zA-Z0-9 ]+$",value):
             self._name = value
@@ -23,7 +24,7 @@ class Item:
     @property
     def brands(self):
         return self._brands
-    @brands.setter
+    @brands.setter # The brands setter enforces input validation for the item brands
     def brands(self,value):
         if re.match(r"^[a-zA-Z0-9, ]+$",value):
             self._brands = value
@@ -34,7 +35,7 @@ class Item:
     @property
     def code(self):
         return self._code
-    @code.setter
+    @code.setter # The code setter enforces input validation for the item barcode
     def code(self,value):
         if re.match(r"^[0-9]",value):
             if len(value) == 13:

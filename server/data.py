@@ -1,5 +1,7 @@
 import requests
 
+# This function handles fetching inventory data from the OpenFoodFacts API
+# Since the API often responds with status code 503, recursion is used untill a successful response and the data are obtained
 def get_items():
         url = 'https://world.openfoodfacts.org/api/v2/search'
         params = {"page_size":50,"fields":"code,product_name,brands"}
@@ -7,7 +9,7 @@ def get_items():
         response = requests.get(url,params=params,headers=headers)
         if response.ok:
             items = [{**item,"id":index+1} for index,item in enumerate(response.json()["products"])]
-            return items
+            return items # The items are assigned a unique id and packaged into a python list before being returned for use in app.py
         else:
             get_items()
 

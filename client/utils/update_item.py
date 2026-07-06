@@ -4,11 +4,8 @@ import requests
 import sys
 init(autoreset=True)
 
-def validate_name(name):
-    if re.match(r"^[a-zA-Z0-9 ]+$",name):
-            return {"product_name":name}
-    else: 
-            return (f"{Fore.RED}The item name should only contain numbers,letters,commas and spaces!")
+# This function handles updating an item's details such as the name and brands by making a PATCH request to the server
+# The if statements are used to validate inputs and to ensure only the values that need to be changed are changed
 def update_item(args):
     if args.brands == None and args.name == None:
         print(f"{Fore.RED} Provide at least one value to update!{Style.RESET_ALL}{Fore.GREEN} Either the name or brands")

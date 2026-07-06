@@ -3,6 +3,7 @@ import re
 from colorama import Fore,init
 init(autoreset=True)
 
+# This function handles removing an item from the inventory by making a DELETE request to the server
 def remove_item(args):
     if args.id != None:
         if re.match(r"^[0-9]+$",args.id):

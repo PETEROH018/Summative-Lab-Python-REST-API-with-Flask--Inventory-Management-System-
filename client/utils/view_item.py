@@ -3,6 +3,7 @@ import re
 from colorama import Fore,Style,init
 init(autoreset=True)
 
+# This function is used to view an item's details where the item is selected by id by making a GET request to the server
 def view_item(args):
     if args.id != None:
         if re.match(r"^[0-9]+$",args.id):
