@@ -17,4 +17,4 @@ def add_item(args):
     }
 
     response = requests.post('http://127.0.0.1:5000/inventory',json=new_item)
-    print(response.json().get("message"))
+    print(f"{Fore.GREEN}{response.json().get("message")}")

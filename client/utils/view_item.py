@@ -11,7 +11,7 @@ def view_item(args):
             if "error" in item:
                 print(f"{Fore.RED}{item.get("error")}")
             else:
-                print(f"{Fore.GREEN}id{Style.RESET_ALL}: {item.get("id")},{Fore.GREEN}name{Style.RESET_ALL}: {item.get("product_name")},{Fore.GREEN}brands{Style.RESET_ALL}: {item.get("brands")},{Fore.GREEN}barcode{Style.RESET_ALL}: {item.get("code")}")
+                print(f"{Fore.GREEN}id{Style.RESET_ALL}: {item.get("id")} \n{Fore.GREEN}name{Style.RESET_ALL}: {item.get("product_name")}\n{Fore.GREEN}brands{Style.RESET_ALL}: {item.get("brands")} \n{Fore.GREEN}barcode{Style.RESET_ALL}: {item.get("code")}")
         else:
             print(f"{Fore.RED}Please enter an integer id!")
     else:

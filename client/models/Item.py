@@ -40,7 +40,7 @@ class Item:
             if len(value) == 13:
                 self._code = value
             else:
-                print(f"{Fore.RED} The barcode should only be thirteen digits!")
+                print(f"{Fore.RED} The barcode should be thirteen digits!")
                 sys.exit(1)
         else:
             print (f"{Fore.RED} The barcode should only contain digits!")

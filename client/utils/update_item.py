@@ -1,9 +1,14 @@
-from colorama import Fore,init
+from colorama import Fore,init,Style
 import re
 import requests
+import sys
+
 init(autoreset=True)
 def update_item(args):
-    if args.brands == None:
+    if args.brands == None and args.name == None:
+        print(f"{Fore.RED} Provide at least one value to update!{Style.RESET_ALL}{Fore.GREEN} Either the name or brands")
+        sys.exit(1)
+    elif args.brands == None:
         item_update = {"product_name":args.name}
     elif args.name == None:
         item_update = {"brands":args.brands}
