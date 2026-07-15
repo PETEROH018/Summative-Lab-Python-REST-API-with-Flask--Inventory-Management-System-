@@ -1,6 +1,5 @@
 requests
 flask
 colorama
-sys
-re
+pytest
 
